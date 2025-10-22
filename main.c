@@ -10,5 +10,11 @@
 int main()
 {
 
+
+        printf("1. City Management\n");
+        printf("2. Distance Management\n");
+        printf("3. Delivery Request Handling and Delivery Cost\n");
+        printf("4. Exit \n");
+
     return 0;
 }
