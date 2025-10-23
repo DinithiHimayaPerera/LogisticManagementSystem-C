@@ -146,7 +146,7 @@ void addCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 
     for(int i=0; i<newCityCount; i++)
     {
-        printf("%d",*cityCount+1);
+        printf("%d\t",*cityCount+1);
         scanf("%s",cityName[*cityCount]);
 
         int duplicates=checkRepetition( cityName,*cityCount,*cityCount);
@@ -167,6 +167,44 @@ void addCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 }
 void removeCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 {
+    int index;
+if(*cityCount==0){
+    printf("\nYou did not enter any city name.\n");
+    return;
+}
+
+printf("\nCities that were entered to the system.\n");
+
+printf("\n\tCities\n");
+printf("\t--------\n");
+
+for(int i=0;i<*cityCount;i++){
+    printf("%d\t%s\n" ,i+1,cityName[i]);
+}
+
+
+printf("\n\tRemove City\n");
+printf("\t------------\n\n");
+printf("Enter the index number of the city you want to remove :");
+scanf("%d",&index);
+
+
+int cityNo=index-1;
+
+if(cityNo>=*cityCount||cityNo<0){
+    printf("\nNo city found with that index.\n");
+    return;
+}
+
+for(int i=cityNo;i<(*cityCount-1);i++){
+    int k=0;
+
+    while((cityName[i][k]=cityName[i+1][k])!='\0'){
+        k++;
+    }
+}
+(*cityCount)--;
+printf("\nSuccessfully Removed......!\n");
 
 }
 void renameCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
@@ -175,22 +213,26 @@ void renameCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 }
 int checkRepetition(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int newCityId)
 {
-for(int i=0;i<cityCount;i++){
-    if(i==newCityId){
-        continue;
-    }
-    int k=0;
-    int same=1;
-    //check characters match and both strings are not finished
-    while(cityName[i][k]==cityName[newCityId][k]&&cityName[i][k]!='\0'&&cityName[newCityId][k]!='0'){
-        k++;
-    }
+    for(int i=0; i<cityCount; i++)
+    {
+        if(i==newCityId)
+        {
+            continue;
+        }
+        int k=0;
+        int same=1;
+        //check characters match and both strings are not finished
+        while(cityName[i][k]==cityName[newCityId][k]&&cityName[i][k]!='\0'&&cityName[newCityId][k]!='0')
+        {
+            k++;
+        }
 
-    if(cityName[i][k]=='\0'&&cityName[newCityId][k]=='\0'){
-        return 1; //found a duplicate city name
+        if(cityName[i][k]=='\0'&&cityName[newCityId][k]=='\0')
+        {
+            return 1; //found a duplicate city name
+        }
     }
-}
-return 0; //not found a duplicate city name
+    return 0; //not found a duplicate city name
 }
 void distanceManagement(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES])
 {
