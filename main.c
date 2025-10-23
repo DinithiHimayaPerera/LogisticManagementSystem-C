@@ -168,77 +168,85 @@ void addCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 void removeCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 {
     int index;
-if(*cityCount==0){
-    printf("\nYou did not enter any city name.\n");
-    return;
-}
-
-printf("\nCities that were entered to the system.\n");
-
-printf("\n\tCities\n");
-printf("\t--------\n");
-
-for(int i=0;i<*cityCount;i++){
-    printf("%d\t%s\n" ,i+1,cityName[i]);
-}
-
-
-printf("\n\tRemove City\n");
-printf("\t------------\n\n");
-printf("Enter the index number of the city you want to remove :");
-scanf("%d",&index);
-
-
-int cityNo=index-1;
-
-if(cityNo>=*cityCount||cityNo<0){
-    printf("\nNo city found with that index.\n");
-    return;
-}
-
-for(int i=cityNo;i<(*cityCount-1);i++){
-    int k=0;
-
-    while((cityName[i][k]=cityName[i+1][k])!='\0'){
-        k++;
+    if(*cityCount==0)
+    {
+        printf("\nYou did not enter any city name.\n");
+        return;
     }
-}
-(*cityCount)--;
-printf("\nSuccessfully Removed......!\n");
+
+    printf("\nCities that were entered to the system.\n");
+
+    printf("\n\tCities\n");
+    printf("\t--------\n");
+
+    for(int i=0; i<*cityCount; i++)
+    {
+        printf("%d\t%s\n",i+1,cityName[i]);
+    }
+
+
+    printf("\n\tRemove City\n");
+    printf("\t------------\n\n");
+    printf("Enter the index number of the city you want to remove :");
+    scanf("%d",&index);
+
+
+    int cityNo=index-1;
+
+    if(cityNo>=*cityCount||cityNo<0)
+    {
+        printf("\nNo city found with that index.\n");
+        return;
+    }
+
+    for(int i=cityNo; i<(*cityCount-1); i++)
+    {
+        int k=0;
+
+        while((cityName[i][k]=cityName[i+1][k])!='\0')
+        {
+            k++;
+        }
+    }
+    (*cityCount)--;
+    printf("\nSuccessfully Removed......!\n");
 
 }
 void renameCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 {
-if(*cityCount==0){
-    printf("\nYou did not enter city name.\n");
-    return;
-}
-printf("\nCities that were entered to the system.\n");
+    if(*cityCount==0)
+    {
+        printf("\nYou did not enter city name.\n");
+        return;
+    }
+    printf("\nCities that were entered to the system.\n");
 
-printf("\n\tCities\n");
-printf("\t-------\n");
-for(int i=0; i<*cityCount;i++){
-    printf("%d\t%s\n",i+1,cityName[i]);
-}
-int index;
+    printf("\n\tCities\n");
+    printf("\t-------\n");
+    for(int i=0; i<*cityCount; i++)
+    {
+        printf("%d\t%s\n",i+1,cityName[i]);
+    }
+    int index;
 
-printf("\n\tRename City\n");
-printf("\t-------------\n");
-printf("Enter the index number of the city you want to remove :");
-scanf("%d",&index);
+    printf("\n\tRename City\n");
+    printf("\t-------------\n");
+    printf("Enter the index number of the city you want to remove :");
+    scanf("%d",&index);
 
-int cityNo=index-1;
+    int cityNo=index-1;
 
-if(cityNo>=*cityCount||cityCount<0){
-    printf("\nNo city found with that index.\n");
-    return;
-}
-printf("\nThe city name entered before :%s\n",cityName[cityNo]);
+    if(cityNo>=*cityCount||cityCount<0)
+    {
+        printf("\nNo city found with that index.\n");
+        return;
+    }
+    printf("\nThe city name entered before :%s\n",cityName[cityNo]);
 
-printf("\nNew name :");
-scanf("%s",&cityName[cityNo]);
+    printf("\nNew name :");
+    scanf("%s",&cityName[cityNo]);
 
-printf("\nSuccessfully Renamed.........!\n");
+    printf("\nSuccessfully Renamed.........!\n");
 }
 int checkRepetition(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int newCityId)
 {
@@ -265,52 +273,60 @@ int checkRepetition(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int ne
 }
 void distanceManagement(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES])
 {
-if(cityCount<2){
-    printf("\nYou need at least two cities to manage distance management system.\n");
-return;
-}
-printf("\n\tDistance Management System");
-printf("\n\t==========================");
-for(int i=0;i<cityCount;i++){
-    for(int j=i;j<cityCount;j++){
-        if(i==j){
-            distance[i][j]=0;
-            continue;
-        }
-        printf("\nDistance from %s to %s (km) :",cityName[i],cityName[j]);
-
-        scanf("%d",&distance[i][j]);
-
-        distance[j][i]=distance[i][j];
+    if(cityCount<2)
+    {
+        printf("\nYou need at least two cities to manage distance management system.\n");
+        return;
     }
-    printf("\n");
-}
-printChart(cityName,cityCount,distance);
-printf("\n\n");
+    printf("\n\tDistance Management System");
+    printf("\n\t==========================");
+    for(int i=0; i<cityCount; i++)
+    {
+        for(int j=i; j<cityCount; j++)
+        {
+            if(i==j)
+            {
+                distance[i][j]=0;
+                continue;
+            }
+            printf("\nDistance from %s to %s (km) :",cityName[i],cityName[j]);
+
+            scanf("%d",&distance[i][j]);
+
+            distance[j][i]=distance[i][j];
+        }
+        printf("\n");
+    }
+    printChart(cityName,cityCount,distance);
+    printf("\n\n");
 }
 void printChart(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES])
 {
-if(cityCount==0){
-    printf("\nYou did not enter city name.\n");
-    return;
-}
-printf("\n\tDistance Chart");
-printf("\n\t--------------\n");
+    if(cityCount==0)
+    {
+        printf("\nYou did not enter city name.\n");
+        return;
+    }
+    printf("\n\tDistance Chart");
+    printf("\n\t--------------\n");
 
-for(int i=0;i<cityCount;i++){
-    printf("|%-8s",cityName[i]);
-}
-printf("|\n");
-
-for(int k=0;k<cityCount;k++){
-    printf("%-10s",cityName[k]);
-
-    for(int m=0;m<cityCount;m++){
-        printf("|%-8d",distance[k][m]);
+    for(int i=0; i<cityCount; i++)
+    {
+        printf("|%-8s",cityName[i]);
     }
     printf("|\n");
-}
-printf("\n");
+
+    for(int k=0; k<cityCount; k++)
+    {
+        printf("%-10s",cityName[k]);
+
+        for(int m=0; m<cityCount; m++)
+        {
+            printf("|%-8d",distance[k][m]);
+        }
+        printf("|\n");
+    }
+    printf("\n");
 
 }
 void deliveryRequest(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES])
@@ -319,7 +335,50 @@ void deliveryRequest(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int d
 }
 int minimumDistance(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES], int start, int end)
 {
-
+    int minimumDistanceRoute=distance[start][end];
+//when you haven't a direct route
+    if(minimumDistanceRoute==0 && start!=end)
+    {
+        minimumDistanceRoute=999999;
+    }
+    for(int i=0; i<cityCount; i++)
+    {
+        if(i==start || i==end)
+        {
+            continue;
+        }
+        if(distance[start][i]>0 && distance[i][end]>0)
+        {
+            int totalDistance=distance[start][i]+distance[i][end];
+            if(totalDistance<minimumDistanceRoute)
+            {
+                minimumDistanceRoute=totalDistance;
+            }
+        }
+    }
+    for(int i=0; i<cityCount; i++)
+    {
+        if(i==start || i==end)
+        {
+            continue;
+        }
+        for(int j=0; j<cityCount; j++)
+        {
+            if(j==start || j==end || j==i)
+            {
+                continue;
+            }
+            if(distance[start][i]>0 && distance[i][end]>0 && distance[i][j]>0)
+            {
+                int totalDistance=distance[start][i]+ distance[i][end]+ distance[i][j];
+                if(totalDistance<minimumDistanceRoute)
+                {
+                    minimumDistanceRoute=totalDistance;
+                }
+            }
+        }
+    }
+    return minimumDistanceRoute;
 }
 void calculateCost(int distance, float weight, int vehicleIndex, float *deliveryCostLast,float fuelUsedLast,float *fuelCostLast, float *totalCostLast,float *profitLast, float *finalChargeLast,float *estimateTimeLast)
 {
