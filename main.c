@@ -273,7 +273,7 @@ printf("\n\tDistance Management System");
 printf("\n\t==========================");
 for(int i=0;i<cityCount;i++){
     for(int j=i;j<cityCount;j++){
-        if(i=j){
+        if(i==j){
             distance[i][j]=0;
             continue;
         }
@@ -281,14 +281,36 @@ for(int i=0;i<cityCount;i++){
 
         scanf("%d",&distance[i][j]);
 
-        distance[i][j]=distance[j][i];
+        distance[j][i]=distance[i][j];
     }
     printf("\n");
 }
 printChart(cityName,cityCount,distance);
+printf("\n\n");
 }
 void printChart(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES])
 {
+if(cityCount==0){
+    printf("\nYou did not enter city name.\n");
+    return;
+}
+printf("\n\tDistance Chart");
+printf("\n\t--------------\n");
+
+for(int i=0;i<cityCount;i++){
+    printf("|%-8s",cityName[i]);
+}
+printf("|\n");
+
+for(int k=0;k<cityCount;k++){
+    printf("%-10s",cityName[k]);
+
+    for(int m=0;m<cityCount;m++){
+        printf("|%-8d",distance[k][m]);
+    }
+    printf("|\n");
+}
+printf("\n");
 
 }
 void deliveryRequest(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES])
