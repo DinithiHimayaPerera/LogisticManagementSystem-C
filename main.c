@@ -265,7 +265,27 @@ int checkRepetition(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int ne
 }
 void distanceManagement(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES])
 {
+if(cityCount<2){
+    printf("\nYou need at least two cities to manage distance management system.\n");
+return;
+}
+printf("\n\tDistance Management System");
+printf("\n\t==========================");
+for(int i=0;i<cityCount;i++){
+    for(int j=i;j<cityCount;j++){
+        if(i=j){
+            distance[i][j]=0;
+            continue;
+        }
+        printf("\nDistance from %s to %s (km) :",cityName[i],cityName[j]);
 
+        scanf("%d",&distance[i][j]);
+
+        distance[i][j]=distance[j][i];
+    }
+    printf("\n");
+}
+printChart(cityName,cityCount,distance);
 }
 void printChart(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES])
 {
