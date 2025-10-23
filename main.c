@@ -209,7 +209,36 @@ printf("\nSuccessfully Removed......!\n");
 }
 void renameCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 {
+if(*cityCount==0){
+    printf("\nYou did not enter city name.\n");
+    return;
+}
+printf("\nCities that were entered to the system.\n");
 
+printf("\n\tCities\n");
+printf("\t-------\n");
+for(int i=0; i<*cityCount;i++){
+    printf("%d\t%s\n",i+1,cityName[i]);
+}
+int index;
+
+printf("\n\tRename City\n");
+printf("\t-------------\n");
+printf("Enter the index number of the city you want to remove :");
+scanf("%d",&index);
+
+int cityNo=index-1;
+
+if(cityNo>=*cityCount||cityCount<0){
+    printf("\nNo city found with that index.\n");
+    return;
+}
+printf("\nThe city name entered before :%s\n",cityName[cityNo]);
+
+printf("\nNew name :");
+scanf("%s",&cityName[cityNo]);
+
+printf("\nSuccessfully Renamed.........!\n");
 }
 int checkRepetition(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int newCityId)
 {
