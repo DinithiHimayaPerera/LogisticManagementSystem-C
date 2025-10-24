@@ -375,6 +375,8 @@ void deliveryRequest(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int d
      }
      float deliveryCost, fuelUsed, fuelCost, totalCost, profit, finalCharge, estimateTime;
 
+     calculateCost(minDistance,weight, vehicleNumber-1, &deliveryCost,&fuelUsed, &fuelCost, &totalCost, &profit, &finalCharge, &estimateTime);
+
 }
 int minimumDistance(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES], int start, int end)
 {
@@ -425,6 +427,18 @@ int minimumDistance(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int di
 }
 void calculateCost(int distance, float weight, int vehicleIndex, float *deliveryCostLast,float *fuelUsedLast,float *fuelCostLast, float *totalCostLast,float *profitLast, float *finalChargeLast,float *estimateTimeLast)
 {
+float relatedRate=rate[vehicleIndex];
+float speedS=avgSpeed[vehicleIndex];
+float efficiency=fuelEfficiency[vehicleIndex];
+
+*deliveryCostLast=(float)distance*relatedRate*(1+(weight/10000.00));
+*fuelUsedLast=(float)distance/efficiency;
+*fuelCostLast=*fuelUsedLast*FUEL_PRICE;
+*totalCostLast=*deliveryCostLast+*totalCostLast;
+*profitLast=*totalCostLast*0.25;
+*finalChargeLast=*totalCostLast+*profitLast;
+*estimateTimeLast=(float)distance/speedS;
+
 
 }
 void printEstimation(float deliveryCost, float fuelUsed, float fuelCost,float totalCost, float profit, float finalCharge,float estimateTime,const char* startCity, const char* endCity,const char* vehicleType, float weight, int distance)
