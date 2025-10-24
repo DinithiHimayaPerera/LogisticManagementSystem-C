@@ -310,9 +310,11 @@ void printChart(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distan
     printf("\n\tDistance Chart");
     printf("\n\t--------------\n");
 
+    printf("%-10s","");
+
     for(int i=0; i<cityCount; i++)
     {
-        printf("|%-8s",cityName[i]);
+        printf("|%-10s",cityName[i]);
     }
     printf("|\n");
 
@@ -322,7 +324,7 @@ void printChart(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distan
 
         for(int m=0; m<cityCount; m++)
         {
-            printf("|%-8d",distance[k][m]);
+            printf("|%-10d",distance[k][m]);
         }
         printf("|\n");
     }
@@ -343,9 +345,9 @@ void deliveryRequest(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int d
 
      float weight;
 
-     printf("Enter the index number of starting point(must be between 1 and %d", cityCount);
+     printf("Enter the index number of starting point(must be between 1 and %d  :", cityCount);
      scanf("%d",&startingPoint);
-     printf("Enter the index number of destination point(must be between 1 and %d", cityCount);
+     printf("Enter the index number of destination point(must be between 1 and %d  :", cityCount);
      scanf("%d",&endPoint);
 
      if(startingPoint==endPoint){
@@ -376,6 +378,7 @@ void deliveryRequest(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int d
      float deliveryCost, fuelUsed, fuelCost, totalCost, profit, finalCharge, estimateTime;
 
      calculateCost(minDistance,weight, vehicleNumber-1, &deliveryCost,&fuelUsed, &fuelCost, &totalCost, &profit, &finalCharge, &estimateTime);
+     printEstimation(deliveryCost, fuelUsed, fuelCost, totalCost, profit, finalCharge,estimateTime, cityName[startingPoint-1], cityName[endPoint-1], vehicleType[vehicleNumber-1], weight, minDistance);
 
 }
 int minimumDistance(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES], int start, int end)
