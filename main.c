@@ -443,5 +443,22 @@ float efficiency=fuelEfficiency[vehicleIndex];
 }
 void printEstimation(float deliveryCost, float fuelUsed, float fuelCost,float totalCost, float profit, float finalCharge,float estimateTime,const char* startCity, const char* endCity,const char* vehicleType, float weight, int distance)
 {
-
+printf("\n===============================================================\n");
+printf("             DELIVERY COST ESTIMATION\n");
+printf("---------------------------------------------------------------\n");
+printf("From:               %s\n",startCity);
+printf("To:                 %s\n",endCity);
+printf("Vehicle:            %s\n",vehicleType);
+printf("Weight:             %.2f kg\n",weight);
+printf("Shortest Distance:  %d km\n",distance);
+printf("---------------------------------------------------------------\n");
+printf("Base Delivery Cost: %.2f LKR\n, delivery cost");
+printf("Estimated Fuel Used:%.2f L\n", fuelUsed);
+printf("Fuel Cost:          %.2f LKR\n",fuelCost);
+printf("Total Operational Cost:%2f LKR\n",fuelCost);
+printf("Profit Margin(25%%):%.2f LKR\n",profit);
+printf("------------------------------------------------\n");
+printf("FINAL CUSTOMER CHARGE: %2f LKR\n", finalCharge);
+printf("ESTIMATED DELIVERY TIME: %.2f hours\n", estimateTime);
+printf("================================================\n");
 }
