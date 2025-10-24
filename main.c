@@ -168,12 +168,13 @@ void addCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 void removeCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 {
     int index;
+    //display a massage to notify that city names are not included
     if(*cityCount==0)
     {
         printf("\nYou did not enter any city name.\n");
         return;
     }
-
+// print all the cities entred to the system
     printf("\nCities that were entered to the system.\n");
 
     printf("\n\tCities\n");
@@ -214,6 +215,7 @@ void removeCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 }
 void renameCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 {
+    //display a massage to notify that city names are not included
     if(*cityCount==0)
     {
         printf("\nYou did not enter city name.\n");
@@ -250,6 +252,7 @@ void renameCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 }
 int checkRepetition(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int newCityId)
 {
+    //check if the user has entered the same name again
     for(int i=0; i<cityCount; i++)
     {
         if(i==newCityId)
@@ -273,6 +276,7 @@ int checkRepetition(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int ne
 }
 void distanceManagement(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES])
 {
+    //input distance to city pairs
     if(cityCount<2)
     {
         printf("\nYou need at least two cities to manage distance management system.\n");
@@ -404,6 +408,7 @@ int minimumDistance(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int di
             }
         }
     }
+    //check for route with one intermediate city
     for(int i=0; i<cityCount; i++)
     {
         if(i==start || i==end)
@@ -426,6 +431,7 @@ int minimumDistance(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int di
             }
         }
     }
+    //return the minimum distance
     return minimumDistanceRoute;
 }
 void calculateCost(int distance, float weight, int vehicleIndex, float *deliveryCostLast,float *fuelUsedLast,float *fuelCostLast, float *totalCostLast,float *profitLast, float *finalChargeLast,float *estimateTimeLast)
