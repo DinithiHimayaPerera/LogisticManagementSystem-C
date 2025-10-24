@@ -24,7 +24,7 @@ void printChart(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distan
 
 void deliveryRequest(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES]);
 int minimumDistance(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES], int start, int end);
-void calculateCost(int distance, float weight, int vehicleIndex, float *deliveryCostLast,float fuelUsedLast,float *fuelCostLast, float *totalCostLast,float *profitLast, float *finalChargeLast,float *estimateTimeLast);
+void calculateCost(int distance, float weight, int vehicleIndex, float *deliveryCostLast,float *fuelUsedLast,float *fuelCostLast, float *totalCostLast,float *profitLast, float *finalChargeLast,float *estimateTimeLast);
 void printEstimation(float deliveryCost, float fuelUsed, float fuelCost,float totalCost, float profit, float finalCharge,float estimateTime,const char* startCity, const char* endCity,const char* vehicleType, float weight, int distance);
 
 
@@ -331,6 +331,49 @@ void printChart(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distan
 }
 void deliveryRequest(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES])
 {
+ if(cityCount<2)
+    {
+        printf("\nYou need at least two cities to manage distance management system.\n");
+        return;
+    }
+
+     printChart(cityName,cityCount,distance);
+
+     int startingPoint, endPoint ,vehicleNumber;
+
+     float weight;
+
+     printf("Enter the index number of starting point(must be between 1 and %d", cityCount);
+     scanf("%d",&startingPoint);
+     printf("Enter the index number of destination point(must be between 1 and %d", cityCount);
+     scanf("%d",&endPoint);
+
+     if(startingPoint==endPoint){
+        printf("The starting point and destination point can not be the same. \n");
+        return;
+     }
+     printf("Weight :");
+     scanf("%f",&weight);
+
+     printf("Vehicle Type :");
+     printf("\n(1=Van , 2=Truck , 3=Lorry)\n");
+     scanf("%d",&vehicleNumber);
+
+     if(vehicleNumber<1 || vehicleNumber>3){
+        printf("\nInvalid vehicle number.\n");
+        return;
+     }
+     if(weight>capacity[vehicleNumber-1]){
+        printf("Sorry....The weight exceeds the vehicle capacity of %d kg.\n",capacity[vehicleNumber-1]);
+       return;
+     }
+     int minDistance= minimumDistance(cityName,cityCount,distance,startingPoint-1,endPoint-1);
+
+     if(minDistance>=999999){
+        printf("There is no available route.\n");
+    return;
+     }
+     float deliveryCost, fuelUsed, fuelCost, totalCost, profit, finalCharge, estimateTime;
 
 }
 int minimumDistance(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int distance[MAX_CITIES][MAX_CITIES], int start, int end)
@@ -380,7 +423,7 @@ int minimumDistance(char cityName[MAX_CITIES][NAME_LENGTH],int cityCount, int di
     }
     return minimumDistanceRoute;
 }
-void calculateCost(int distance, float weight, int vehicleIndex, float *deliveryCostLast,float fuelUsedLast,float *fuelCostLast, float *totalCostLast,float *profitLast, float *finalChargeLast,float *estimateTimeLast)
+void calculateCost(int distance, float weight, int vehicleIndex, float *deliveryCostLast,float *fuelUsedLast,float *fuelCostLast, float *totalCostLast,float *profitLast, float *finalChargeLast,float *estimateTimeLast)
 {
 
 }
