@@ -233,7 +233,7 @@ void renameCity(char cityName[MAX_CITIES][NAME_LENGTH],int *cityCount)
 
     printf("\n\tRename City\n");
     printf("\t-------------\n");
-    printf("Enter the index number of the city you want to remove :");
+    printf("Enter the index number of the city you want to rename :");
     scanf("%d",&index);
 
     int cityNo=index-1;
